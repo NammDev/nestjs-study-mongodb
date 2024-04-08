@@ -7,15 +7,9 @@ export class LessonResolver {
   constructor(private lessonService: LessonService) {}
 
   @Query(() => LessonType)
-  lesson() {
-    return {
-      id: 'sds',
-      name: 'Coding Class',
-      startDate: new Date().toISOString(),
-      endDate: new Date().toISOString(),
-    };
+  lesson(@Args('id') id: string) {
+    return this.lessonService.getLesson(id);
   }
-
   @Mutation(() => LessonType)
   createLesson(
     @Args('name') name: string,
